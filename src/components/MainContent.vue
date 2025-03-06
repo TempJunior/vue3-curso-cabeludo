@@ -1,21 +1,41 @@
 <script lang="ts">
 
-export default {}
+import { ref } from 'vue'
+import SelectIngredients from '@/components/SelectIngredients.vue'
+
+export default {
+  components: { SelectIngredients },
+  data(){
+    return{
+      ingredients: ref(['Alho Pororoca', 'Pimenta Pinto de doende', 'Pão que o djabo amassou'])
+    }
+  }
+}
 </script>
 
 <template>
   <main class="conteudo-principal">
+
     <section>
       <span class="subtitulo-lg sua-lista-texto">
         Sua lista
       </span>
 
-      <ul class="ingredientes-sua-lista">
-        <li v-for="ingredient in ['Alho', 'Cceta']" class="ingrediente">
+      <ul v-if="ingredients.length" class="ingredientes-sua-lista">
+        <li v-for="ingredient in ingredients" :key="ingredient" class="ingrediente">
           {{ingredient}}
         </li>
       </ul>
+
+      <p v-else class="paragrafo lista-vazia">
+        <img src="../assets/imagens/icones/lista-vazia.svg" alt="">
+        Sua privada está vazia. Coloque algumas bosta aqui!
+      </p>
     </section>
+
+    <SelectIngredients/>
+
+
   </main>
 </template>
 
