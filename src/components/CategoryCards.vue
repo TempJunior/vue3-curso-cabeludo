@@ -1,13 +1,13 @@
 <script lang="ts">
-
 import type { PropType } from 'vue'
 import type ICategory from '@/interfaces/ICategory'
-import TagComponent from '@/components/TagComponent.vue'
+import SelectIngredients from '@/components/SelectIngredients.vue'
+import SelectedIngredient from '@/components/SelectedIngredient.vue'
 
 export default {
-  components: { TagComponent },
+  components: { SelectedIngredient },
   props: {
-    category: {type :Object as PropType<ICategory>, required: true},
+    category: { type: Object as PropType<ICategory>, required: true }
   }
 }
 </script>
@@ -15,15 +15,19 @@ export default {
 <template>
   <article class="categoria">
     <header class="categoria__cabecalho">
-      <img :src="`/imagens/icones/categorias_ingredientes/${category.imagem}`" alt="" class="categoria__imagem">
+      <img
+        :src="`/imagens/icones/categorias_ingredientes/${category.imagem}`"
+        alt=""
+        class="categoria__imagem"
+      />
       <h2 class="paragrafo-lg categoria__nome">
-        {{category.nome}}
+        {{ category.nome }}
       </h2>
     </header>
 
     <ul class="categoria__ingredientes">
       <li v-for="ingrediente in category.ingredientes" :key="ingrediente">
-        <TagComponent :text="ingrediente" />
+        <SelectedIngredient :ingrediente="ingrediente" />
       </li>
     </ul>
   </article>
@@ -34,7 +38,7 @@ export default {
   width: 19.5rem;
   padding: 1rem;
   border-radius: 1rem;
-  background: var(--branco, #FFF);
+  background: var(--branco, #fff);
   box-shadow: 4px 4px 10px 0px rgba(68, 68, 68, 0.05);
   height: 100%;
 
@@ -57,7 +61,7 @@ export default {
 
 .categoria__nome {
   text-align: center;
-  color: var(--verde-medio, #3D6D4A);
+  color: var(--verde-medio, #3d6d4a);
   font-weight: 700;
 }
 
